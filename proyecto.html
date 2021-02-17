@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Proyecto</title>
+	<link rel="stylesheet" href="./proyecto.css">
+</head>
+
+<body>
+	<h1>ChMaquina</h1>
+
+	<div class="padre">
+
+		<div class="codigo">
+			<input type="file" id="file-input" />
+			<br>
+			<textarea id="cargaPrograma" placeholder="seleccione un programa"></textarea>
+			
+			<br>
+
+			<input id="cargarArchivo" type="button" value="cargar">
+		</div>
+
+		<div class="kernel_programas">
+			<p>kernel/programas</p>
+		</div>
+
+		<div class="memoria">
+			<p>memoria</p>
+			kernel (10-25/100):
+			<input type="number" max="25" min="10">
+			<br>
+			programa(s) (5-75/100):
+			<input type="number" max="75" min="5">
+		</div>
+
+	</div>
+	<div class="comp">
+
+
+		<div class="main">
+			<p id="texto_computador">>>> prueba de texto en chmaquina</p>
+		</div>
+
+		<div class="terminal">
+			<p id="texto_terminal"> >> salida</p>
+
+		</div>
+
+	</div>
+
+	<br>
+	<!--
+	<div class="footer">
+	
+	</div>
+-->
+</body>
+<script src="./script.js"></script>
+
+</html>
