@@ -1,11 +1,8 @@
 /*lectura de archivos .ch
---------------------------------
- */
-
+--------------------------------*/
 let input = document.querySelector('input');
 let textarea = document.querySelector('textarea');
-
-/*chequeo de sintaxis
+/*intrucciones del simulador
 ------------------------------ */
 let palabrasClave = Array(
     "cargue",
@@ -33,41 +30,41 @@ let palabrasClave = Array(
 );
 
 //------implementacion de funciones del simulador-------
-function sume(a,b){
-    alert(a+b);
+function instruccion(inst){
+
 }
 
-function sintaxis(tipo) {
-    
-    
-    
-    switch (tipo) {
+function sintaxis(linea) {
+    let chars=linea.split(" ");
 
-
-        case "Sume":
-        case "sume":
-            alert("cargado exitosamente!");
-            sume(1,3);
-            textarea.style.backgroundColor="green";
-            break;
-
-        /*
-        default:
-            alert("--> Error encontrado, no se reconoce:\n " + tipo);
-            document.getElementById("terminal").innerHTML = "--> Error encontrado, no se reconoce: " + tipo;
-            document.getElementById("texto_computador").innerHTML="--> Error encontrado, no se reconoce: " + tipo;
-            break;
-        */
-
-        /*
-        case :
-    
-        break;
-    */
-
+    if (chars[0]=="cargue"){}
+    if (chars[0]=="nueva"){}
+    if (chars[0]=="lea"){}
+    if (chars[0]=="sume"){}
+    if (chars[0]=="reste"){}
+    if (chars[0]=="multiplique"){}
+    if (chars[0]=="divida"){}
+    if (chars[0]=="potencia"){}
+    if (chars[0]=="modulo"){}
+    if (chars[0]=="concatene"){}
+    if (chars[0]=="elimine"){}
+    if (chars[0]=="extraiga"){}
+    if (chars[0]=="y"){}
+    if (chars[0]=="o"){}
+    if (chars[0]=="no"){}
+    if (chars[0]=="muestre"){}
+    if (chars[0]=="imprima"){}
+    if (chars[0]=="vaya"){}
+    if (chars[0]=="vayasi"){}
+    if (chars[0]=="etiqueta"){}
+    if (chars[0]=="retorne"){}
+    else{
+        alert("no se reconoce: "+String(chars[0]));
     }
 
 }
+
+//-------lectura del archivo ejecutable------
 input.addEventListener('change', () => {
     let files = input.files;
     if (files.length == 0) return;
@@ -76,7 +73,7 @@ input.addEventListener('change', () => {
     reader.onload = (e) => {
         const file = e.target.result;
         const lines = file.split(/\r\n|\n/);
-   textarea.value = lines.join('\n');
+    textarea.value = lines.join('\n');
     };
 
     reader.onerror = (e) => alert(e.target.error.name);
@@ -86,27 +83,34 @@ input.addEventListener('change', () => {
 
 let btn_cargar=document.getElementById("cargarArchivo");
 
+
+//-------carga el contenido del archivo--------
 btn_cargar.addEventListener("click",()=>{
 
-    alert("Cargado :U");
-    btn_cargar.style.backgroundColor='red';
-    btn_cargar.style.color="white";
+    alert("programa cargado");
+    btn_cargar.style.backgroundColor='yellow';
+    /*btn_cargar.style.color="white";*/
     btn_cargar.value="ejecutando...";
 
     //ejecucion del programa
     let programa=textarea.value;
 
-    //separando elementos individuales(palabras clave, valores)
-    let lineas=programa.split(" ");
+    let monitor=document.getElementByClass("monitor");
+    
+    let texto=document.createElemnt("p")
+    texto.text=textarea.value;
+    
+    monitor.appendChild(texto);
+
+    //separando linea a linea el programa
+    let lineas=programa.split("\n");
 
     for(let i=0;i<lineas.length;i++){
-    //chequeo sintaxis de cada elemnto en cada linea
-        sintaxis(lineas[i]);
-        alert(lineas[i]);
+        //chequeo sintaxis de cada elemnto en cada linea
+        sintaxis(lineas[i].toLowerCase());
+        
+        //lectura y ejecucion de instrucciones
+        //instruccion(lineas[i].toLocaleLowerCase());
     }
-
-
-
-
 });
 
